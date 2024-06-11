@@ -1,5 +1,5 @@
 import express, { Request, Response } from "express";
-
+import { json, urlencoded } from "body-parser";
 type DiscountDetail = {
   discountPercentage: number;
   maximumDiscountCap: number;
@@ -11,18 +11,27 @@ const app = express();
 const port = 3000;
 
 app.use(express.json());
+app.use(json());
+app.use(urlencoded({ extended: true }));
 
 const inventory = new Map<string, number>();
 const carts = new Map<string, Cart>();
 const discountCoupons = new Map<string, DiscountDetail>();
 
 function addItemToInventory(productId: string, quantity: number): void {
+  if (quantity <= 0) throw new Error("Quantity should be greater than 0");
+
   const currentQuantity = inventory.get(productId) || 0;
   inventory.set(productId, currentQuantity + quantity);
 }
 
 function removeItemFromInventory(productId: string, quantity: number): void {
-  const currentQuantity = inventory.get(productId) || 0;
+  if (quantity <= 0) throw new Error("Quantity should be greater than 0");
+
+  const currentQuantity = inventory.get(productId);
+  if (!currentQuantity)
+    throw new Error(`Product ${productId} is not in the inventory.`);
+
   const updatedQuantity = Math.max(currentQuantity - quantity, 0);
   inventory.set(productId, updatedQuantity);
 }
@@ -32,18 +41,14 @@ function addItemToCart(
   productId: string,
   quantity: number
 ): void {
-  if (!inventory.has(productId)) {
-    console.log(`Product ${productId} is not in the inventory.`);
-    return;
-  }
+  const inventoryQuantity = inventory.get(productId);
+  if (!inventoryQuantity)
+    throw new Error(`Product ${productId} is not in the inventory.`);
 
-  const inventoryQuantity = inventory.get(productId)!;
-  if (inventoryQuantity < quantity) {
-    console.log(
-      `Not enough quantity in the inventory for product ${productId}.`
+  if (inventoryQuantity < quantity)
+    throw new Error(
+      `Not enough quantity of product ${productId} in the inventory.`
     );
-    return;
-  }
 
   const customerCart = carts.get(customerId) || {};
   customerCart[productId] = (customerCart[productId] || 0) + quantity;
@@ -53,10 +58,7 @@ function addItemToCart(
 
 function applyDiscountCoupon(cartValue: number, discountId: string): number {
   const discount = discountCoupons.get(discountId);
-  if (!discount) {
-    console.log(`Discount coupon ${discountId} does not exist.`);
-    return cartValue;
-  }
+  if (!discount) throw new Error(`Discount coupon ${discountId} not found.`);
 
   const { discountPercentage, maximumDiscountCap } = discount;
   const discountAmount = (cartValue * discountPercentage) / 100;
@@ -66,50 +68,70 @@ function applyDiscountCoupon(cartValue: number, discountId: string): number {
 }
 
 // Define the routes here
+app.get("/inventory", (req: Request, res: Response) => {
+  res.status(200).json({ inventory: Object.fromEntries(inventory) });
+});
 
-app.post("/inventory", (req: Request, res: Response) => {
+app.post("/inventory/add-items", (req: Request, res: Response) => {
+  console.log(req.body);
   const { productId, quantity }: { productId: string; quantity: number } =
     req.body;
   addItemToInventory(productId, quantity);
-  res.status(200).send("Item added to inventory.");
+  res.status(201).json({
+    message: "Item added to inventory.",
+    data: { inventory: Object.fromEntries(inventory) },
+  });
 });
 
-app.delete("/inventory", (req: Request, res: Response) => {
+app.patch("/inventory/remove-items", (req: Request, res: Response) => {
+  console.log(req.body);
   const { productId, quantity }: { productId: string; quantity: number } =
     req.body;
+
   removeItemFromInventory(productId, quantity);
-  res.status(200).send("Item removed from inventory.");
+  res.status(200).json({
+    message: "Item removed from inventory.",
+    data: { inventory: Object.fromEntries(inventory) },
+  });
 });
 
-app.post("/cart", (req: Request, res: Response) => {
+app.post("/cart/add-items", (req: Request, res: Response) => {
+  console.log(req.body);
   const {
     customerId,
     productId,
     quantity,
   }: { customerId: string; productId: string; quantity: number } = req.body;
   addItemToCart(customerId, productId, quantity);
-  res.status(200).send("Item added to cart.");
-});
-
-app.post("/apply-coupon", (req: Request, res: Response) => {
-  const { cartValue, discountId }: { cartValue: number; discountId: string } =
-    req.body;
-  const discountedPrice = applyDiscountCoupon(cartValue, discountId);
-  res.status(200).send(`Discounted price is ${discountedPrice}`);
+  res.status(201).json({
+    message: "Item added to cart.",
+    data: { customerId, cart: carts.get(customerId) },
+  });
 });
 
 app.get("/cart/:customerId", (req: Request, res: Response) => {
   const { customerId } = req.params;
-  const customerCart = carts.get(customerId) || {};
-  let cartValue = 0;
-  for (const [productId, quantity] of Object.entries(customerCart)) {
-    const productPrice = productId === "product1" ? 100 : 200; // Assume product prices for demonstration
-    cartValue += productPrice * quantity;
-  }
-  res.status(200).send(`Cart value is ${cartValue}`);
+  res.status(200).json({ customerId, cart: carts.get(customerId) || {} });
 });
 
-app.post("/coupon", (req: Request, res: Response) => {
+app.get("/discount-coupons", (req: Request, res: Response) => {
+  res
+    .status(200)
+    .json({ discountCoupons: Object.fromEntries(discountCoupons) });
+});
+
+app.post("/discount-coupons/apply-coupon", (req: Request, res: Response) => {
+  console.log(req.body);
+  const { cartValue, discountId }: { cartValue: number; discountId: string } =
+    req.body;
+  const discountedPrice = applyDiscountCoupon(cartValue, discountId);
+  res.status(200).json({
+    message: "Discount applied.",
+    data: { discountedPrice },
+  });
+});
+app.post("/discount-coupons/add-coupon", (req: Request, res: Response) => {
+  console.log(req.body);
   const {
     discountId,
     discountPercentage,
@@ -120,7 +142,16 @@ app.post("/coupon", (req: Request, res: Response) => {
     maximumDiscountCap: number;
   } = req.body;
   discountCoupons.set(discountId, { discountPercentage, maximumDiscountCap });
-  res.status(200).send("Discount coupon added.");
+  res.status(201).json({
+    message: "Discount coupon added.",
+    data: { discountCoupons: Object.fromEntries(discountCoupons) },
+  });
+});
+
+app.use((err: Error, req: Request, res: Response, next: Function) => {
+  const status = res.statusCode === 200 ? 500 : res.statusCode;
+  const message = err.message || "Internal Server Error";
+  res.status(status).json({ message });
 });
 
 app.listen(port, () => {
