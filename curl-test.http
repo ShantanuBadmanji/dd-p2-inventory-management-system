@@ -1,0 +1,18 @@
+# Add item to inventory:
+curl -X POST http://localhost:3000/inventory -H "Content-Type: application/json" -d '{"productId":"product1","quantity":10}'
+
+# Remove item from inventory:
+curl -X DELETE http://localhost:3000/inventory -H "Content-Type: application/json" -d '{"productId":"product1","quantity":5}'
+
+# Add item to cart:
+curl -X POST http://localhost:3000/cart -H "Content-Type: application/json" -d '{"customerId":"customer1","productId":"product1","quantity":3}'
+
+# Apply discount coupon:
+curl -X POST http://localhost:3000/apply-coupon -H "Content-Type: application/json" -d '{"cartValue":300,"discountId":"coupon1"}'
+
+# Get cart value:
+curl http://localhost:3000/cart/customer1
+
+# Add a discount coupon:
+curl -X POST http://localhost:3000/coupon -H "Content-Type: application/json" -d '{"discountId":"coupon1","discountPercentage":20,"maximumDiscountCap":100}'
+
