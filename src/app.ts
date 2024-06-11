@@ -14,7 +14,7 @@ type DiscountDetail = {
  */
 type Cart = Record<string, number>;
 
-export const app = express();
+const app = express();
 const port = 3000;
 
 app.use(express.json());
@@ -216,6 +216,14 @@ app.use((err: Error, req: Request, res: Response, next: Function) => {
   res.status(status).json({ message });
 });
 
-app.listen(port, () => {
-  console.log(`Server is running on http://localhost:${port}`);
-});
+
+export {
+  addItemToCart,
+  addItemToInventory,
+  applyDiscountCoupon,
+  removeItemFromInventory,
+  app,
+  inventory,
+  carts,
+  discountCoupons,
+};
