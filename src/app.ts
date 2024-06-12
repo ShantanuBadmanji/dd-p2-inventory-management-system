@@ -2,9 +2,11 @@ import express, { Request, Response } from "express";
 import { json, urlencoded } from "body-parser";
 import { inventoryRouter, cartRouter, couponRouter } from "./routes";
 import morgan from "morgan";
+import cors from "cors";
 
 const app = express();
 
+app.use(cors()); // Enable CORS for all requests
 app.use(express.json());
 app.use(json());
 app.use(urlencoded({ extended: true }));
