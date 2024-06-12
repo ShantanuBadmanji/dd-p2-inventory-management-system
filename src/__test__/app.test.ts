@@ -1,5 +1,7 @@
 import supertest from "supertest";
-import { app, inventory, carts, discountCoupons } from "../app";
+import app from "../app";
+import { carts, discountCoupons, inventory } from "../utils/datastructures";
+
 const request = supertest(app);
 
 describe("Routes", () => {

@@ -1,13 +1,10 @@
-
 import {
-  addItemToCart,
   addItemToInventory,
-  applyDiscountCoupon,
-  carts,
-  discountCoupons,
-  inventory,
   removeItemFromInventory,
-} from "../app";
+  addItemToCart,
+  applyDiscountCoupon,
+} from "../services";
+import { carts, discountCoupons, inventory } from "../utils/datastructures";
 
 describe("Inventory Management", () => {
   beforeEach(() => {
