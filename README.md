@@ -54,3 +54,9 @@ The server will be running on `http://localhost:3000`.
 ## Testing
 
 Unit tests for the functions and API endpoints are included in the project. Run the tests with `npm run test`.
+
+## Postman Collection
+
+A Postman collection with pre-configured requests for testing the API endpoints is available at the following link:
+
+https://www.postman.com/postmanratan19/workspace/shantanu-badmanji-public/collection/28007724-fe07a2d9-9907-4b81-8038-c13c5cb321b7?action=share&creator=28007724

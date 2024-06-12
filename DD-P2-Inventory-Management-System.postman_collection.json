@@ -2,8 +2,10 @@
 	"info": {
 		"_postman_id": "fe07a2d9-9907-4b81-8038-c13c5cb321b7",
 		"name": "DD-P2-Inventory-Management-System",
+		"description": "\\*_# Inventory Management System__\\*_This is an implementation of an Inventory Management System using Node.js, Express, and TypeScript. The system provides APIs for managing inventory, customer carts, and discount coupons.\n\n\\*_## Features:  \n\\*_- Add, remove, and retrieve items from the inventory\n\n\\- Add items to customer carts\n\n\\- Retrieve customer carts\n\n\\- Apply discount coupons to cart values\n\n\\- Add and retrieve discount coupons\n\n**\\## Implementation Details**  \nThe system uses the following data structures:  \n\\- \\`inventory\\` (Map): Stores products as keys and their respective quantities as values.\n\n\\- \\`carts\\` (Map): Stores customer IDs as keys and their respective carts as values. Each cart is an object that maps product IDs to their quantities.\n\n\\- \\`discountCoupons\\` (Map): Stores coupon IDs as keys and their respective discount details as values. Each discount detail is an object with \\`discountPercentage\\` and \\`maximumDiscountCap\\` properties.\n\nThe following functions are implemented:  \n\\- \\`addItemToInventory(productId, quantity)\\`: Adds a product to the inventory or updates the quantity if the product already exists.\n\n\\- \\`removeItemFromInventory(productId, quantity)\\`: Removes the specified quantity of a product from the inventory.\n\n\\- \\`addItemToCart(customerId, productId, quantity)\\`: Adds a product to the customer's cart if the product is available in the inventory.\n\n\\- \\`applyDiscountCoupon(cartValue, discountId)\\`: Applies a discount coupon to the provided cart value and returns the discounted price.",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "28007724"
+		"_exporter_id": "28007724",
+		"_collection_link": "https://www.postman.com/postmanratan19/workspace/shantanu-badmanji-public/collection/28007724-fe07a2d9-9907-4b81-8038-c13c5cb321b7?action=share&source=collection_link&creator=28007724"
 	},
 	"item": [
 		{
@@ -36,7 +38,75 @@
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Successfully added Item to Inventory",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"productId\": \"product1\",\r\n    \"quantity\": 10\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/inventory/add-items",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"inventory",
+										"add-items"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "88"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"58-lOFoFqtawdIYpyo86Ls46tQck58\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 12 Jun 2024 01:08:26 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Item added to inventory.\",\n    \"data\": {\n        \"inventory\": {\n            \"product1\": 12,\n            \"product2\": 2\n        }\n    }\n}"
+						}
+					]
 				},
 				{
 					"name": "Remove Item from Inventory",
@@ -65,7 +135,142 @@
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Remove Item from Inventory",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"productId\": \"product1\",\r\n    \"quantity\": 5\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/inventory/remove-items",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"inventory",
+										"remove-items"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "91"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"5b-cTLpkFIO9yAlCAIgIwmepRxsSBY\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 12 Jun 2024 01:09:23 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Item removed from inventory.\",\n    \"data\": {\n        \"inventory\": {\n            \"product1\": 7,\n            \"product2\": 2\n        }\n    }\n}"
+						},
+						{
+							"name": "When Item Not Found",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"productId\": \"product1\",\r\n    \"quantity\": 5\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/inventory/remove-items",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"inventory",
+										"remove-items"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "55"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"37-/49VbBWk2TqD6tWjrH3EkbHMI50\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 12 Jun 2024 01:09:48 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Product product1 is not in the inventory.\"\n}"
+						}
+					]
 				},
 				{
 					"name": "Get Inventory",
@@ -96,9 +301,77 @@
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Get Inventory",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/inventory",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"inventory"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "42"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2a-RhBbL2ST+4QPhxWZl6jVcoDkaOs\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 12 Jun 2024 01:08:52 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"inventory\": {\n        \"product1\": 12,\n        \"product2\": 2\n    }\n}"
+						}
+					]
 				}
-			]
+			],
+			"description": "\\- \\`GET /inventory\\`: Retrieve the current inventory.\n\n\\- \\`POST /inventory/add-items\\`: Add items to the inventory.\n\n\\- \\`PATCH /inventory/remove-items\\`: Remove items from the inventory."
 		},
 		{
 			"name": "Cart",
@@ -130,7 +403,142 @@
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Can't add as product1 is out of stock",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"customerId\": \"customer1\",\r\n    \"productId\": \"product1\",\r\n    \"quantity\": 2\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/cart/add-items",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"cart",
+										"add-items"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "55"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"37-/49VbBWk2TqD6tWjrH3EkbHMI50\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 12 Jun 2024 01:11:38 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Product product1 is not in the inventory.\"\n}"
+						},
+						{
+							"name": "Successfully added Item to Cart",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"customerId\": \"customer1\",\r\n    \"productId\": \"product1\",\r\n    \"quantity\": 2\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/cart/add-items",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"cart",
+										"add-items"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "102"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"66-6xHMOYzE/e976qo6Z4pZArVD+Gw\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 12 Jun 2024 01:14:48 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Item added to cart.\",\n    \"data\": {\n        \"customerId\": \"customer1\",\n        \"cart\": {\n            \"product1\": 7,\n            \"product2\": 3\n        }\n    }\n}"
+						}
+					]
 				},
 				{
 					"name": "Get Cart Value for Customer",
@@ -162,9 +570,78 @@
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Get Cart Value for Customer",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/cart/customer1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"cart",
+										"customer1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "61"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"3d-QrXbc5z7p9tq+aNUPGJbDvCadC0\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 12 Jun 2024 01:16:11 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"customerId\": \"customer1\",\n    \"cart\": {\n        \"product1\": 7,\n        \"product2\": 3\n    }\n}"
+						}
+					]
 				}
-			]
+			],
+			"description": "\\- \\`POST /cart/add-items\\`: Add items to a customer's cart.\n\n\\- \\`GET /cart/:customerId\\`: Retrieve a customer's cart."
 		},
 		{
 			"name": "Coupon",
@@ -176,7 +653,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"cartValue\": 1000,\r\n    \"discountId\": \"coupon1\"\r\n}",
+							"raw": "{\r\n    \"cartValue\": 1000,\r\n    \"discountId\": \"DISC10\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -196,7 +673,142 @@
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Coupon Not Found !!",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"cartValue\": 1000,\r\n    \"discountId\": \"coupon2\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/discount-coupons/apply-coupon",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"discount-coupons",
+										"apply-coupon"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "48"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"30-n1I2Jzs1jYERxozLeeyZQFFkv5k\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 12 Jun 2024 01:17:18 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Discount coupon coupon2 not found.\"\n}"
+						},
+						{
+							"name": "Successfull redeem on coupon",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"cartValue\": 1000,\r\n    \"discountId\": \"DISC10\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/discount-coupons/apply-coupon",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"discount-coupons",
+										"apply-coupon"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "62"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"3e-htrFRpjXoqWghFKAkZUFILJQCaU\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 12 Jun 2024 01:18:50 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Discount applied.\",\n    \"data\": {\n        \"discountedPrice\": 900\n    }\n}"
+						}
+					]
 				},
 				{
 					"name": "Add Discount Coupon",
@@ -225,7 +837,75 @@
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Add Discount Coupon",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"discountId\": \"coupon1\",\r\n    \"discountPercentage\": 20,\r\n    \"maximumDiscountCap\": 100\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/discount-coupons/add-coupon",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"discount-coupons",
+										"add-coupon"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "186"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"ba-u0nDG2xLODXHEPtPJJgmrv+Ndds\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 12 Jun 2024 01:20:27 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Discount coupon added.\",\n    \"data\": {\n        \"discountCoupons\": {\n            \"DISC10\": {\n                \"discountPercentage\": 10,\n                \"maximumDiscountCap\": 100\n            },\n            \"coupon1\": {\n                \"discountPercentage\": 20,\n                \"maximumDiscountCap\": 100\n            }\n        }\n    }\n}"
+						}
+					]
 				},
 				{
 					"name": "Get Coupons",
@@ -244,9 +924,68 @@
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Get Coupons",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/discount-coupons",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"discount-coupons"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "81"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"51-J1Kj6HdemgxLP3NWYPSsE9QOoOA\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 12 Jun 2024 01:16:55 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"discountCoupons\": {\n        \"DISC10\": {\n            \"discountPercentage\": 10,\n            \"maximumDiscountCap\": 100\n        }\n    }\n}"
+						}
+					]
 				}
-			]
+			],
+			"description": "\\- \\`GET /discount-coupons\\`: Retrieve the available discount coupons.\n\n\\- \\`POST /discount-coupons/apply-coupon\\`: Apply a discount coupon to a cart value.\n\n\\- \\`POST /discount-coupons/add-coupon\\`: Add a new discount coupon."
 		}
 	]
 }
