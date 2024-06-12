@@ -60,3 +60,11 @@ Unit tests for the functions and API endpoints are included in the project. Run 
 A Postman collection with pre-configured requests for testing the API endpoints is available at the following link:
 
 https://www.postman.com/postmanratan19/workspace/shantanu-badmanji-public/collection/28007724-fe07a2d9-9907-4b81-8038-c13c5cb321b7?action=share&creator=28007724
+
+## Deployed Server
+
+The server is deployed and accessible at the following link:
+
+https://dd-p2-inventory-management-system.onrender.com
+
+**Note:** Since the server is deployed on a free service (Render), it has a cold start of approximately 50 seconds. This means that the initial request might take longer to respond, but subsequent requests will be faster.

@@ -16,6 +16,10 @@ app.use("/inventory", inventoryRouter);
 app.use("/cart", cartRouter);
 app.use("/discount-coupons", couponRouter);
 
+app.get("/", (req: Request, res: Response) => {
+  res.json({ message: "Inventory Management System API" });
+});
+
 /**
  * Error handling middleware.
  */

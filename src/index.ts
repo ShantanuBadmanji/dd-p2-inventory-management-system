@@ -1,3 +1,4 @@
+import "dotenv/config";
 import app from "./app";
 import {
   addItemToCart,
@@ -6,7 +7,7 @@ import {
   removeItemFromInventory,
 } from "./services";
 import { carts, discountCoupons, inventory } from "./utils/datastructures";
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 function demo() {
   console.log("----------------------------------------Demonstration Started--------------------------------------------------\n\n");
