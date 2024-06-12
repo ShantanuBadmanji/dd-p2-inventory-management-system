@@ -26,12 +26,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/inventory/add-items",
-							"protocol": "http",
+							"raw": "{{baseUrl}}/inventory/add-items",
 							"host": [
-								"localhost"
+								"{{baseUrl}}"
 							],
-							"port": "3000",
 							"path": [
 								"inventory",
 								"add-items"
@@ -54,12 +52,10 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:3000/inventory/add-items",
-									"protocol": "http",
+									"raw": "{{baseUrl}}/inventory/add-items",
 									"host": [
-										"localhost"
+										"{{baseUrl}}"
 									],
-									"port": "3000",
 									"path": [
 										"inventory",
 										"add-items"
@@ -123,12 +119,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/inventory/remove-items",
-							"protocol": "http",
+							"raw": "{{baseUrl}}/inventory/remove-items",
 							"host": [
-								"localhost"
+								"{{baseUrl}}"
 							],
-							"port": "3000",
 							"path": [
 								"inventory",
 								"remove-items"
@@ -151,12 +145,10 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:3000/inventory/remove-items",
-									"protocol": "http",
+									"raw": "{{baseUrl}}/inventory/remove-items",
 									"host": [
-										"localhost"
+										"{{baseUrl}}"
 									],
-									"port": "3000",
 									"path": [
 										"inventory",
 										"remove-items"
@@ -218,12 +210,10 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:3000/inventory/remove-items",
-									"protocol": "http",
+									"raw": "{{baseUrl}}/inventory/remove-items",
 									"host": [
-										"localhost"
+										"{{baseUrl}}"
 									],
-									"port": "3000",
 									"path": [
 										"inventory",
 										"remove-items"
@@ -290,12 +280,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/inventory",
-							"protocol": "http",
+							"raw": "{{baseUrl}}/inventory",
 							"host": [
-								"localhost"
+								"{{baseUrl}}"
 							],
-							"port": "3000",
 							"path": [
 								"inventory"
 							]
@@ -317,12 +305,10 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:3000/inventory",
-									"protocol": "http",
+									"raw": "{{baseUrl}}/inventory",
 									"host": [
-										"localhost"
+										"{{baseUrl}}"
 									],
-									"port": "3000",
 									"path": [
 										"inventory"
 									]
@@ -391,12 +377,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/cart/add-items",
-							"protocol": "http",
+							"raw": "{{baseUrl}}/cart/add-items",
 							"host": [
-								"localhost"
+								"{{baseUrl}}"
 							],
-							"port": "3000",
 							"path": [
 								"cart",
 								"add-items"
@@ -419,12 +403,10 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:3000/cart/add-items",
-									"protocol": "http",
+									"raw": "{{baseUrl}}/cart/add-items",
 									"host": [
-										"localhost"
+										"{{baseUrl}}"
 									],
-									"port": "3000",
 									"path": [
 										"cart",
 										"add-items"
@@ -486,12 +468,10 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:3000/cart/add-items",
-									"protocol": "http",
+									"raw": "{{baseUrl}}/cart/add-items",
 									"host": [
-										"localhost"
+										"{{baseUrl}}"
 									],
-									"port": "3000",
 									"path": [
 										"cart",
 										"add-items"
@@ -558,12 +538,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/cart/customer1",
-							"protocol": "http",
+							"raw": "{{baseUrl}}/cart/customer1",
 							"host": [
-								"localhost"
+								"{{baseUrl}}"
 							],
-							"port": "3000",
 							"path": [
 								"cart",
 								"customer1"
@@ -586,12 +564,10 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:3000/cart/customer1",
-									"protocol": "http",
+									"raw": "{{baseUrl}}/cart/customer1",
 									"host": [
-										"localhost"
+										"{{baseUrl}}"
 									],
-									"port": "3000",
 									"path": [
 										"cart",
 										"customer1"
@@ -661,12 +637,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/discount-coupons/apply-coupon",
-							"protocol": "http",
+							"raw": "{{baseUrl}}/discount-coupons/apply-coupon",
 							"host": [
-								"localhost"
+								"{{baseUrl}}"
 							],
-							"port": "3000",
 							"path": [
 								"discount-coupons",
 								"apply-coupon"
@@ -689,12 +663,10 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:3000/discount-coupons/apply-coupon",
-									"protocol": "http",
+									"raw": "{{baseUrl}}/discount-coupons/apply-coupon",
 									"host": [
-										"localhost"
+										"{{baseUrl}}"
 									],
-									"port": "3000",
 									"path": [
 										"discount-coupons",
 										"apply-coupon"
@@ -756,12 +728,10 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:3000/discount-coupons/apply-coupon",
-									"protocol": "http",
+									"raw": "{{baseUrl}}/discount-coupons/apply-coupon",
 									"host": [
-										"localhost"
+										"{{baseUrl}}"
 									],
-									"port": "3000",
 									"path": [
 										"discount-coupons",
 										"apply-coupon"
@@ -825,12 +795,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/discount-coupons/add-coupon",
-							"protocol": "http",
+							"raw": "{{baseUrl}}/discount-coupons/add-coupon",
 							"host": [
-								"localhost"
+								"{{baseUrl}}"
 							],
-							"port": "3000",
 							"path": [
 								"discount-coupons",
 								"add-coupon"
@@ -853,12 +821,10 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:3000/discount-coupons/add-coupon",
-									"protocol": "http",
+									"raw": "{{baseUrl}}/discount-coupons/add-coupon",
 									"host": [
-										"localhost"
+										"{{baseUrl}}"
 									],
-									"port": "3000",
 									"path": [
 										"discount-coupons",
 										"add-coupon"
@@ -913,12 +879,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/discount-coupons",
-							"protocol": "http",
+							"raw": "{{baseUrl}}/discount-coupons",
 							"host": [
-								"localhost"
+								"{{baseUrl}}"
 							],
-							"port": "3000",
 							"path": [
 								"discount-coupons"
 							]
@@ -931,12 +895,10 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:3000/discount-coupons",
-									"protocol": "http",
+									"raw": "{{baseUrl}}/discount-coupons",
 									"host": [
-										"localhost"
+										"{{baseUrl}}"
 									],
-									"port": "3000",
 									"path": [
 										"discount-coupons"
 									]
