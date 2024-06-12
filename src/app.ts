@@ -1,12 +1,14 @@
 import express, { Request, Response } from "express";
 import { json, urlencoded } from "body-parser";
 import { inventoryRouter, cartRouter, couponRouter } from "./routes";
+import morgan from "morgan";
 
 const app = express();
 
 app.use(express.json());
 app.use(json());
 app.use(urlencoded({ extended: true }));
+app.use(morgan("combined"));
 
 app.use("/inventory", inventoryRouter);
 app.use("/cart", cartRouter);
